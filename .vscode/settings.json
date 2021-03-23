@@ -1,0 +1,18 @@
+{
+  // "jestrunner.jestCommand": "npm run test --prefix packages/la-danze-ui --",
+  // Disable default VSCode formatting for TypeScript files
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  // Disable default VSCode formatting for TypeScript React files
+  "[typescriptreact]": {
+    "editor.formatOnSave": false
+  },
+  // Allow formatting for other languages
+  "editor.formatOnSave": false,
+  // Let ESLint (incorporating Prettier errors) format code on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "typescript.preferences.importModuleSpecifier": "non-relative"
+}
