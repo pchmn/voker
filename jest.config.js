@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'ts-jest',
   setupFilesAfterEnv: [
-    '<rootDir>/src/setupTests.ts'
+    '<rootDir>/src/testing/setupTests.ts'
   ],
   moduleNameMapper: {
     '^src/(.*)': '<rootDir>/src/$1',

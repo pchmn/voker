@@ -11,6 +11,10 @@
     "@semantic-release/changelog",
     ["./.github/scripts/semantic-release.plugin.js", {
       "files": [
+        {
+          "path": "sonar-project.properties",
+          "versionKey": "sonar.projectVersion"
+        },
         "package.json"
       ]
     }],
