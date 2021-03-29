@@ -7,7 +7,8 @@
       "ESNext"
     ],
     "types": [
-      "vite/client"
+      "vite/client",
+      "node"
     ],
     "allowJs": false,
     "skipLibCheck": false,
@@ -35,9 +36,13 @@
       "@config/*": [
         "src/config/*"
       ],
+      "@testing/*": [
+        "src/testing/*"
+      ]
     }
   },
   "include": [
-    "./src"
+    "./src",
+    "typings.d.ts"
   ]
 }

@@ -1,5 +1,4 @@
 {
-  // "jestrunner.jestCommand": "npm run test --prefix packages/la-danze-ui --",
   // Disable default VSCode formatting for TypeScript files
   "[typescript]": {
     "editor.formatOnSave": false

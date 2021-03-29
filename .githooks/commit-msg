@@ -1,0 +1,9 @@
+  
+#!/bin/sh
+
+if ! command -v commitlint &> /dev/null
+then
+    yarn global add commitlint
+fi
+
+commitlint --config commitlint.config.js --edit "$1"

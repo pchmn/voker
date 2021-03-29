@@ -35,5 +35,6 @@ module.exports = {
   rules: {
     "prettier/prettier": ["error", { singleQuote: true, jsxSingleQuote: false, endOfLine: 'crlf', printWidth: 120, trailingComma: "none" }],
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+  ignorePatterns: ["vite.config.ts", "commitlint.config.js", ".github/scripts/semantic-release.plugin.js", ".eslintrc.js", "jest.config.js", "src/setupTests.ts"]
 };
