@@ -1,4 +1,6 @@
-import { RoomMember, RoomRole, VoteValue, Voting } from '@core/useFirebase/models';
+import { useAppDispatch, useAppSelector } from '@core/store/hooks';
+import { setSuccess } from '@core/store/snackbarMessageSlice';
+import { RoomMember, RoomRole } from '@core/useFirebase/models';
 import { useFirebase } from '@core/useFirebase/useFirebase';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -9,22 +11,22 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { FlexLayout } from 'la-danze-ui';
-import React, { useEffect, useState } from 'react';
-import { useStore } from 'react-hookstore';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { ReactComponent as CrownIcon } from './crown-solid.svg';
 import './Members.scss';
 
-export function Members({ memberList }: { memberList: RoomMember[] }): JSX.Element {
+export function Members(): JSX.Element {
   const { t } = useTranslation();
-  const [, setSuccess] = useStore<string>('success');
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const memberList = useAppSelector((state) => state.room.value.memberList);
+  const dispatch = useAppDispatch();
 
   const handleCopy = async () => {
     await copyChareLink();
-    setSuccess(t('room.members.shareLinkCopied'));
+    dispatch(setSuccess(t('room.members.shareLinkCopied')));
   };
 
   return (
@@ -58,7 +60,7 @@ export function Members({ memberList }: { memberList: RoomMember[] }): JSX.Eleme
 }
 
 function Member({ member }: { member: RoomMember }): JSX.Element {
-  const { currentUser } = useFirebase();
+  const currentUser = useAppSelector((state) => state.auth.value.currentUser);
   return (
     <div className="Member">
       <MemberStatus member={member} />
@@ -79,46 +81,19 @@ const roleList = [RoomRole.Moderator, RoomRole.Voter, RoomRole.Viewer];
 function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
   const { t } = useTranslation();
   const { roomId } = useParams<{ roomId: string }>();
-  const { currentUser, setRole } = useFirebase(roomId);
-  const [currentVoting] = useStore<Voting>('currentVoting');
-  const [hasVoted, setHasVoted] = useState(false);
-  const [voteValue, setVoteValue] = useState<VoteValue>();
+  const { setRole } = useFirebase(roomId);
+  const currentUser = useAppSelector((state) => state.auth.value.currentUser);
+  const currentRoom = useAppSelector((state) => state.room.value);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedRole, setSelectedRole] = useState(member.role);
-  const [currentRole] = useStore<RoomRole>('currentRole');
 
   const open = Boolean(anchorEl);
   const roleListFiltered = roleList.filter((item) => {
-    if (item === RoomRole.Moderator && currentRole !== RoomRole.Moderator) {
+    if (item === RoomRole.Moderator && currentRoom.currentRole !== RoomRole.Moderator) {
       return false;
     }
     return true;
   });
-
-  useEffect(() => {
-    setHasVoted(checkMemberHasVoted(member.uid));
-  }, [currentVoting]);
-
-  useEffect(() => {
-    setSelectedRole(member?.role);
-  }, [member]);
-
-  const checkMemberHasVoted = (uid: string): boolean => {
-    if (!currentVoting || !currentVoting.votes) {
-      setVoteValue(undefined);
-      return false;
-    }
-    if (currentVoting.votes.length === 0) {
-      setVoteValue(undefined);
-      return false;
-    }
-    if (currentVoting.votes[uid] !== undefined) {
-      setVoteValue(currentVoting.votes[uid]);
-      return true;
-    }
-    setVoteValue(undefined);
-    return false;
-  };
 
   const getVoteStatus = () => {
     if (member.role === RoomRole.Viewer) {
@@ -128,10 +103,10 @@ function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
         </SvgIcon>
       );
     }
-    if (!hasVoted) {
+    if (!member.hasVoted) {
       return <Typography variant="body1">...</Typography>;
     }
-    if (currentVoting?.isOpen) {
+    if (currentRoom.currentVoting?.isOpen) {
       return (
         <SvgIcon fontSize="small">
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
@@ -140,7 +115,7 @@ function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
     }
     return (
       <Typography className="value" variant="body1">
-        {voteValue}
+        {currentRoom.currentVoting?.votes[member.uid]}
       </Typography>
     );
   };
@@ -156,19 +131,21 @@ function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
   };
 
   const handleMenuItemClick = (role: RoomRole) => {
-    setRole(currentVoting.votingId, member.uid, role);
-    setSelectedRole(role);
-    setAnchorEl(null);
+    if (currentRoom.currentVoting) {
+      setRole(currentRoom.currentVoting.votingId, member.uid, role);
+      setSelectedRole(role);
+      setAnchorEl(null);
+    }
   };
 
   const canChangeRole = () => {
-    if (currentRole === RoomRole.Moderator && member.uid === currentUser?.uid) {
+    if (currentRoom.currentRole === RoomRole.Moderator && member.uid === currentUser?.uid) {
       return false;
     }
     if (member.uid === currentUser?.uid) {
       return true;
     }
-    return currentRole === RoomRole.Moderator;
+    return currentRoom.currentRole === RoomRole.Moderator;
   };
 
   return (
@@ -182,7 +159,7 @@ function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
         onClick={handleClick}
       >
         <span className={`onlineStatus ${member.isOnline ? 'online' : 'offline'}`} />
-        <span className={`voteStatus ${member.role !== RoomRole.Viewer && !hasVoted ? 'waiting' : ''}`}>
+        <span className={`voteStatus ${member.role !== RoomRole.Viewer && !member.hasVoted ? 'waiting' : ''}`}>
           {getVoteStatus()}
         </span>
       </div>
@@ -196,7 +173,7 @@ function MemberStatus({ member }: { member: RoomMember }): JSX.Element {
         }}
       >
         {roleListFiltered.map((role) => (
-          <MenuItem key={role} selected={role === selectedRole} onClick={() => handleMenuItemClick(role)}>
+          <MenuItem key={role} selected={role === member?.role} onClick={() => handleMenuItemClick(role)}>
             {t(`room.members.memberStatus.${role}`)}
           </MenuItem>
         ))}

@@ -1,4 +1,4 @@
-import { Voting } from '@core/useFirebase/models';
+import { useAppSelector } from '@core/store/hooks';
 import { useFirebase } from '@core/useFirebase/useFirebase';
 import useTheme from '@material-ui/core/styles/useTheme';
 import SvgIcon from '@material-ui/core/SvgIcon';
@@ -6,7 +6,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import LoadingButton from '@material-ui/lab/LoadingButton';
 import { FlexLayout } from 'la-danze-ui';
 import React, { useState } from 'react';
-import { useStore } from 'react-hookstore';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -14,16 +13,17 @@ export function Actions(): JSX.Element {
   const { roomId } = useParams<{ roomId: string }>();
   const { t } = useTranslation();
   const { closeVoting, createNewVoting } = useFirebase(roomId);
-  const [currentVoting] = useStore<Voting>('currentVoting');
+  const currentVoting = useAppSelector((state) => state.room.value.currentVoting);
   const [pending, setPending] = useState(false);
   const theme = useTheme();
-  console.log('theme', JSON.stringify(theme));
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleCloseVoting = async () => {
-    setPending(true);
-    await closeVoting(currentVoting.votingId);
-    setPending(false);
+    if (currentVoting) {
+      setPending(true);
+      await closeVoting(currentVoting.votingId);
+      setPending(false);
+    }
   };
 
   const handleNextVoting = async () => {

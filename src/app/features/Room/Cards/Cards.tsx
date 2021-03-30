@@ -1,4 +1,5 @@
-import { RoomRole, VoteValue, Voting } from '@core/useFirebase/models';
+import { useAppSelector } from '@core/store/hooks';
+import { RoomRole, VoteValue } from '@core/useFirebase/models';
 import { useFirebase } from '@core/useFirebase/useFirebase';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Card from '@material-ui/core/Card';
@@ -17,35 +18,35 @@ createStore('cardSelected', null);
 
 function VotingCard({ value }: { value: VoteValue }): JSX.Element {
   const { roomId } = useParams<{ roomId: string }>();
-  const { vote, currentUser } = useFirebase(roomId);
+  const { vote } = useFirebase(roomId);
   const [cardSelected, setCardSelected] = useStore('cardSelected');
-  const [currentVoting] = useStore<Voting>('currentVoting');
-  const [currentRole] = useStore<RoomRole>('currentRole');
+  const currentRoom = useAppSelector((state) => state.room.value);
+  const currentUser = useAppSelector((state) => state.auth.value.currentUser);
 
   useEffect(() => {
-    if (currentVoting && currentUser) {
-      setCardSelected(currentVoting.votes ? currentVoting.votes[currentUser.uid] : null);
+    if (currentRoom.currentVoting && currentUser) {
+      setCardSelected(currentRoom.currentVoting.votes ? currentRoom.currentVoting.votes[currentUser.uid] : null);
     }
-  }, [currentVoting, currentUser, setCardSelected]);
+  }, [currentRoom.currentVoting, currentUser, setCardSelected]);
 
   useEffect(() => {
-    if (currentRole === RoomRole.Viewer) {
+    if (currentRoom.currentRole === RoomRole.Viewer) {
       setCardSelected(null);
     }
-  }, [currentRole, setCardSelected]);
+  }, [currentRoom.currentRole, setCardSelected]);
 
   const handleVote = (value: VoteValue) => {
-    if (currentRole !== RoomRole.Viewer) {
-      invariant(currentVoting, 'No current voting');
+    if (currentRoom.currentRole !== RoomRole.Viewer) {
+      invariant(currentRoom.currentVoting, 'No current voting');
       setCardSelected(cardSelected !== value ? value : null);
-      vote(currentVoting.votingId, cardSelected !== value ? value : null);
+      vote(currentRoom.currentVoting.votingId, cardSelected !== value ? value : null);
     }
   };
 
   return (
     <Grid item xs={3}>
       <Card className={`VotingCard ${cardSelected === value ? 'selected' : ''}`} onClick={() => handleVote(value)}>
-        <ButtonBase className="button" disabled={currentRole === RoomRole.Viewer}>
+        <ButtonBase className="button" disabled={currentRoom.currentRole === RoomRole.Viewer}>
           <FlexLayout alignItems="center" justifyContent="center">
             <Typography variant="h4">{value}</Typography>
           </FlexLayout>

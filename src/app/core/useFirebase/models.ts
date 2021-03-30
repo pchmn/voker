@@ -17,7 +17,7 @@ export interface Vote {
 export interface Voting {
   votingId: string;
   isOpen: boolean;
-  creationDate: Date;
+  creationDate: string;
   votes: { [key: string]: VoteValue | undefined };
 }
 

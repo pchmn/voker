@@ -1,4 +1,5 @@
-import { RoomRole, Voting } from '@core/useFirebase/models';
+import { useAppSelector } from '@core/store/hooks';
+import { RoomRole } from '@core/useFirebase/models';
 import { useFirebase } from '@core/useFirebase/useFirebase';
 import { Actions } from '@features/Room/Actions/Actions';
 import { Cards } from '@features/Room/Cards/Cards';
@@ -10,77 +11,27 @@ import { withJoiningRoom } from '@shared/hocs/withJoiningRoom';
 import { withUsername } from '@shared/hocs/withUsername';
 import { FlexLayout } from 'la-danze-ui';
 import React, { useEffect } from 'react';
-import { createStore, useStore } from 'react-hookstore';
 import { useHistory, useParams } from 'react-router-dom';
 import './Room.scss';
 
-createStore('currentVoting', null);
-createStore('currentRole', null);
-
 function RoomComponent(): JSX.Element {
   const { roomId } = useParams<{ roomId: string }>();
-  const {
-    currentUser,
-    watchRoomMembers,
-    unwatchRoomMembers,
-    watchVotings,
-    unwatchVotings,
-    online,
-    leaveRoom,
-    memberList,
-    votingList
-  } = useFirebase(roomId);
-  const [currentVoting, setCurrentVoting] = useStore<Voting>('currentVoting');
-  const [currentRole, setCurrentRole] = useStore<RoomRole>('currentRole');
+  const { online, leaveRoom, watchRoom, unwatchRoom } = useFirebase(roomId);
   const history = useHistory();
+  const currentRoom = useAppSelector((state) => state.room.value);
 
   useEffect(() => {
     watchRoom();
-
-    return () => unwatchRoom();
-  }, [roomId]);
-
-  useEffect(() => {
-    getCurrentVoting();
-  }, [votingList]);
-
-  useEffect(() => {
-    checkCurrentRole();
-  }, [memberList]);
-
-  const watchRoom = () => {
     online();
-    watchRoomMembers();
-    watchVotings();
-
     window.onbeforeunload = () => {
       leaveRoom();
     };
-  };
 
-  const unwatchRoom = () => {
-    console.log('unwatch');
-    unwatchRoomMembers();
-    unwatchVotings();
-    leaveRoom();
-  };
-
-  const getCurrentVoting = () => {
-    if (votingList?.length > 0) {
-      setCurrentVoting(
-        votingList.sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())[0]
-      );
-    }
-  };
-
-  const checkCurrentRole = () => {
-    if (memberList?.length > 0) {
-      const me = memberList.find((item) => item.uid === currentUser?.uid);
-      if (me) {
-        setCurrentRole(me.role);
-      }
-    }
-  };
+    return () => {
+      unwatchRoom();
+      leaveRoom();
+    };
+  }, [roomId]);
 
   return (
     <div className="Room">
@@ -93,13 +44,13 @@ function RoomComponent(): JSX.Element {
         <Grid item lg={8} md={10} xs={12}>
           <Grid container justifyContent="center" spacing={4}>
             <Grid item lg={3} md={3} xs={10}>
-              <Members memberList={memberList} />
+              <Members />
             </Grid>
             <Grid item lg={6} md={6} xs={10}>
-              {currentVoting?.isOpen ? <Cards /> : <VotingChart />}
+              {currentRoom.currentVoting?.isOpen ? <Cards /> : <VotingChart />}
             </Grid>
             <Grid item lg={3} md={3} xs={10} className="actions">
-              {currentRole === RoomRole.Moderator && <Actions />}
+              {currentRoom.currentRole === RoomRole.Moderator && <Actions />}
             </Grid>
           </Grid>
         </Grid>

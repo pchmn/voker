@@ -1,3 +1,5 @@
+import { useAppDispatch, useAppSelector } from '@core/store/hooks';
+import { setCriticError, setError, setSuccess } from '@core/store/snackbarMessageSlice';
 import { withAuth } from '@core/withAuth/withAuth';
 import { CreatingRoom } from '@features/CreatingRoom/CreatingRoom';
 import { Home } from '@features/Home/Home';
@@ -7,41 +9,35 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import { AnimateRoute, AnimateSwitch } from 'la-danze-ui';
 import { SnackbarKey, SnackbarProvider, useSnackbar } from 'notistack';
 import React, { createRef, useEffect } from 'react';
-import { createStore, useStore } from 'react-hookstore';
 import { Redirect, useHistory } from 'react-router-dom';
 
-createStore('criticError', null);
-createStore('error', null);
-createStore('success', null);
-
 function AppComponent(): JSX.Element {
-  const [criticError, setCriticError] = useStore<string | null>('criticError');
-  const [error, setError] = useStore<string | null>('error');
-  const [success, setSuccess] = useStore<string | null>('success');
+  const snackBarMessage = useAppSelector((state) => state.snackbarMessage.value);
+  const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
 
   useEffect(() => {
-    if (criticError) {
+    if (snackBarMessage.criticError) {
       history.push('/');
-      enqueueSnackbar(criticError, { variant: 'error' });
-      setCriticError(null);
+      enqueueSnackbar(snackBarMessage.criticError, { variant: 'error' });
+      dispatch(setCriticError(undefined));
     }
-  }, [criticError, setCriticError, enqueueSnackbar, history]);
+  }, [snackBarMessage.criticError, enqueueSnackbar, history, dispatch]);
 
   useEffect(() => {
-    if (error) {
-      enqueueSnackbar(error, { variant: 'error' });
-      setError(null);
+    if (snackBarMessage.error) {
+      enqueueSnackbar(snackBarMessage.error, { variant: 'error' });
+      dispatch(setError(undefined));
     }
-  }, [error, setError, enqueueSnackbar]);
+  }, [snackBarMessage.error, enqueueSnackbar, dispatch]);
 
   useEffect(() => {
-    if (success) {
-      enqueueSnackbar(success, { variant: 'success' });
-      setSuccess(null);
+    if (snackBarMessage.success) {
+      enqueueSnackbar(snackBarMessage.success, { variant: 'success' });
+      dispatch(setSuccess(undefined));
     }
-  }, [success, setSuccess, enqueueSnackbar]);
+  }, [snackBarMessage.success, enqueueSnackbar, dispatch]);
 
   return (
     <AnimateSwitch fullHeight animationType="scale">

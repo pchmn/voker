@@ -1,3 +1,4 @@
+import { useAppSelector } from '@core/store/hooks';
 import { useFirebase } from '@core/useFirebase/useFirebase';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -57,7 +58,7 @@ function UsernameForm({ isCreation }: { isCreation: boolean }): JSX.Element {
 
 export function withUsername(Component: React.ElementType, isCreation: boolean) {
   return function Render(): JSX.Element {
-    const { currentUser } = useFirebase();
+    const currentUser = useAppSelector((state) => state.auth.value.currentUser);
     return (
       <>
         {!currentUser?.username ? (

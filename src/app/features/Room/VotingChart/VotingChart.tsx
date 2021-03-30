@@ -1,10 +1,10 @@
+import { useAppSelector } from '@core/store/hooks';
 import { VoteValue, Voting } from '@core/useFirebase/models';
 import Chart from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FlexLayout } from 'la-danze-ui';
 import React, { useEffect, useState } from 'react';
 import { Pie } from 'react-chartjs-2';
-import { useStore } from 'react-hookstore';
 import { useTranslation } from 'react-i18next';
 
 Chart.plugins.register(ChartDataLabels);
@@ -53,7 +53,7 @@ class DataSet {
 
 export function VotingChart(): JSX.Element {
   const { t } = useTranslation();
-  const [currentVoting] = useStore<Voting>('currentVoting');
+  const currentVoting = useAppSelector((state) => state.room.value.currentVoting);
   const [dataSet, setDataSet] = useState(new DataSet());
   const [average, setAverage] = useState<number>(0);
 

@@ -1,8 +1,10 @@
 import '@config/i18n/translation';
+import store from '@core/store/store';
 import firebase from 'firebase';
 import { Theme } from 'la-danze-ui';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { App } from './app/App';
 import './index.css';
@@ -31,9 +33,11 @@ firebase.initializeApp(import.meta.env.PROD ? firebaseConfigProd : firebaseConfi
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter basename="/voker">
-      <Theme>
-        <App />
-      </Theme>
+      <Provider store={store}>
+        <Theme>
+          <App />
+        </Theme>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
