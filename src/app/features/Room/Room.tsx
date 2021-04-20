@@ -1,10 +1,6 @@
 import { useAppSelector } from '@core/store/hooks';
-import { RoomRole } from '@core/useFirebase/models';
 import { useFirebase } from '@core/useFirebase/useFirebase';
-import { Actions } from '@features/Room/Actions/Actions';
-import { Cards } from '@features/Room/Cards/Cards';
-import { Members } from '@features/Room/Members/Members';
-import { VotingChart } from '@features/Room/VotingChart/VotingChart';
+import { PokerTable } from '@features/Room/PokerTable/PokerTable';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { withJoiningRoom } from '@shared/hocs/withJoiningRoom';
@@ -42,7 +38,8 @@ function RoomComponent(): JSX.Element {
       </FlexLayout>
       <Grid container justifyContent="center">
         <Grid item lg={8} md={10} xs={12}>
-          <Grid container justifyContent="center" spacing={4}>
+          <PokerTable />
+          {/* <Grid container justifyContent="center" spacing={4}>
             <Grid item lg={3} md={3} xs={10}>
               <Members />
             </Grid>
@@ -52,7 +49,7 @@ function RoomComponent(): JSX.Element {
             <Grid item lg={3} md={3} xs={10} className="actions">
               {currentRoom.currentRole === RoomRole.Moderator && <Actions />}
             </Grid>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </div>

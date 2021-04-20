@@ -1,0 +1,48 @@
+.PokerTable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .ciclegraph {
+    position: relative;
+    width: 18rem;
+    height: 18rem;
+    margin: calc(100px / 2 + 0px);
+  }
+  
+  .ciclegraph:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 2px solid teal;
+    width: calc(100% - 2px * 2);
+    height: calc(100% - 2px * 2);
+    border-radius: 50%;
+  }
+  
+  .ciclegraph .circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: calc(-100px / 2);
+    transition: transform 0.5s;
+  }
+  
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #fff; */
+    border: 0.25rem solid teal;
+    border-radius: 7px;
+    height: 80px;
+    width: 60px;
+  }
+}
