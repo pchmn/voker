@@ -1,39 +1,42 @@
-
 module.exports = {
   env: {
-    browser: true, // Allows for the use of predefined global variables for browsers (document, window, etc.)
-    jest: true, // Allows for the use of predefined global variables for Jest (describe, test, etc.)
-    node: true, // Allows for the use of predefined global variables for Node.js (module, process, etc.)
+    browser: true,
+    jest: true,
+    node: true
   },
+  parser: '@typescript-eslint/parser',
   extends: [
-    "react-app", // Use the recommended rules from eslint-config-react-app (bundled with Create React App)
-    "eslint:recommended", // Use the recommened rules from eslint
-    "plugin:@typescript-eslint/recommended", // Use the recommended rules from @typescript-eslint/eslint-plugin
-    "plugin:react/recommended", // Use the recommended rules from eslint-plugin-react
-    "prettier", // Use eslint-config-prettier to disable ESLint formatting rules from eslint-plugin-react that would conflict with with Prettier
-    "plugin:prettier/recommended", // Enables eslint-plugin-prettier to display Prettier errors as ESLint errors
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'prettier'
   ],
-  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
-  parserOptions: {
-    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
-    ecmaFeatures: {
-      jsx: true // Allows for the parsing of JSX
-    },
-    sourceType: "module", // Allows for the use of imports
-    project: ['./tsconfig.json',],
-  },
-  plugins: [
-    "@typescript-eslint", // Allows for manually setting @typescript-eslint/* rules 
-    "react", // Allows for manually setting react/* rules
-    "prettier", // Allows for manually setting prettier/* rules
-  ],
+  plugins: ['react', 'prettier'],
   settings: {
     react: {
-      version: "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
-    },
+      version: 'detect'
+    }
   },
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+      extends: ['plugin:jest/recommended', 'plugin:testing-library/react']
+    }
+  ],
   rules: {
-    "prettier/prettier": ["error", { singleQuote: true, jsxSingleQuote: false, endOfLine: 'crlf', printWidth: 120, trailingComma: "none" }],
-    "@typescript-eslint/no-explicit-any": "off"
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        jsxSingleQuote: false,
+        tabWidth: 2,
+        useTabs: false,
+        endOfLine: 'lf',
+        printWidth: 120,
+        trailingComma: 'none'
+      }
+    ]
   }
 };
