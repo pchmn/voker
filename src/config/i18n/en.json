@@ -1,0 +1,51 @@
+{
+  "common": {
+    "validate": "Validate",
+    "loading": "Loading...",
+    "goToHome": "Go to Home"
+  },
+  "errors": {
+    "authError": "An error occurred during authentication, please reload the page",
+    "unknownError": "An error occured, please retry or reload the page",
+    "roomNotFound": "Can't join room, please check room ID"
+  },
+  "home": {
+    "createNewRoom": "Create new Room",
+    "joinARoom": "Join a Room",
+    "joinRoom": "Join Room",
+    "roomId": "Room ID"
+  },
+  "withUsername": {
+    "titleCreation": "Please choose a username before creating the room",
+    "titleJoining": "Please choose a username before joining the room",
+    "chooseUsername": "Your username"
+  },
+  "withJoiningRoom": {
+    "loading": "Joining room..."
+  },
+  "creatingRoom": {
+    "loading": "Creating room..."
+  },
+  "room": {
+    "members": {
+      "title": "Members",
+      "shareLinkCopied": "Share link copied !",
+      "shareLink": "Share link",
+      "copyToClipboard": "Copy link to clipboard",
+      "memberStatus": {
+        "moderator": "Moderator",
+        "voter": "Voter",
+        "viewer": "Viewer"
+      }
+    },
+    "actions": {
+      "closeVoting": "Close voting",
+      "finishVoting": "Finish voting",
+      "nextVoting": "Next voting"
+    },
+    "votingChart": {
+      "average": "Average",
+      "noVote": "There is no vote"
+    }
+  }
+}
