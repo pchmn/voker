@@ -1,10 +1,10 @@
 {
-  "name": "vite-react-ts-ghactions-template",
+  "name": "voker",
   "version": "0.0.0",
   "description": "React + TypeScript + Vite + Github Actions starter template",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pchmn/vite-react-ts-ghactions-template.git"
+    "url": "git+https://github.com/pchmn/voker.git"
   },
   "keywords": [
     "react",
@@ -15,7 +15,7 @@
   ],
   "author": "pchmn",
   "license": "MIT",
-  "homepage": "https://github.com/pchmn/vite-react-ts-ghactions-template",
+  "homepage": "https://github.com/pchmn/voker",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -27,8 +27,14 @@
     "lint": "eslint --cache --fix ./src"
   },
   "dependencies": {
+    "@mantine/core": "^3.6.5",
+    "@mantine/hooks": "^3.6.5",
+    "firebase": "^9.6.6",
+    "i18next": "^21.6.10",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-i18next": "^11.15.3",
+    "react-query": "^3.34.13"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",

@@ -5,5 +5,8 @@
   },
   "editor.formatOnSave": false,
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  "jest.autoRun": "off"
+  "jest.autoRun": "off",
+  "i18n-ally.localesPaths": [
+    "src/config/i18n"
+  ]
 }

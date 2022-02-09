@@ -26,16 +26,11 @@ module.exports = {
     }
   ],
   rules: {
-    'prettier/prettier': [
+    'prettier/prettier': ['error'],
+    'no-restricted-imports': [
       'error',
       {
-        singleQuote: true,
-        jsxSingleQuote: false,
-        tabWidth: 2,
-        useTabs: false,
-        endOfLine: 'lf',
-        printWidth: 120,
-        trailingComma: 'none'
+        patterns: ['@app/features/*/*', '@lib/*/*', '@app/components/*']
       }
     ]
   }
