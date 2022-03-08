@@ -13,6 +13,8 @@ export function useFirebaseAuth() {
 
   const authenticate: () => Promise<UserCredential> = () => signInAnonymously(auth);
 
+  const currentUser: () => User | null = () => auth.currentUser;
+
   const subscribeAuth: (callback: (user: User | null) => void) => Unsubscribe = (
     callback: (user: User | null) => void
   ) => {
@@ -21,5 +23,5 @@ export function useFirebaseAuth() {
 
   const signOut: () => Promise<void> = () => firebaseSignOut(auth);
 
-  return { authenticate, subscribeAuth, signOut };
+  return { authenticate, currentUser, subscribeAuth, signOut };
 }
