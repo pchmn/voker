@@ -8,5 +8,6 @@
   "jest.autoRun": "off",
   "i18n-ally.localesPaths": [
     "src/config/i18n"
-  ]
+  ],
+  "i18n-ally.keystyle": "nested"
 }
