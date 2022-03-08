@@ -1,15 +1,15 @@
-import { MoonIcon, SunIcon } from '@app/components';
-import { ActionIcon, AppShell, Header, Title, useMantineColorScheme } from '@mantine/core';
+import { GithubIcon, HeaderMenu } from '@app/components';
+import { ActionIcon, AppShell, Header as MantineHeader, MediaQuery, Space, Text, useMantineTheme } from '@mantine/core';
 import React, { PropsWithChildren } from 'react';
 
 export function AppLayout({ children }: PropsWithChildren<unknown>) {
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const theme = useMantineTheme();
 
   return (
     <AppShell
       fixed
       header={
-        <Header height={70} padding="md">
+        <MantineHeader height={70} padding="md">
           <div
             style={{
               display: 'flex',
@@ -20,23 +20,85 @@ export function AppLayout({ children }: PropsWithChildren<unknown>) {
             }}
           >
             <div style={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
-              <Title order={1} style={{ fontWeight: 800 }}>
-                Vo<span style={{ fontWeight: 400 }}>ting</span> <span style={{ fontWeight: 400 }}>Po</span>ker
-              </Title>
+              <Text style={{ fontWeight: 800, fontSize: '2rem' }} color={theme.primaryColor}>
+                Vo
+                <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+                  <span style={{ fontWeight: 200 }}>ting Po</span>
+                </MediaQuery>
+                ker
+              </Text>
             </div>
             <div style={{ marginLeft: 'auto' }}>
-              <ActionIcon onClick={() => toggleColorScheme()}>
-                {colorScheme === 'dark' ? <SunIcon /> : <MoonIcon />}
-              </ActionIcon>
+              <HeaderMenu />
             </div>
           </div>
-        </Header>
+        </MantineHeader>
       }
       styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] }
+        main: {
+          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          display: 'flex',
+          flexDirection: 'column',
+          paddingLeft: 0
+        }
       })}
     >
-      {children}
+      <div style={{ flexGrow: 1 }}>{children}</div>
+      <Footer />
     </AppShell>
   );
 }
+
+function Footer() {
+  const theme = useMantineTheme();
+
+  return (
+    <div
+      style={{
+        padding: '20px',
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
+        display: 'flex',
+        justifyContent: 'center'
+      }}
+    >
+      <Text size="sm">Voker · Made by pchmn ·</Text>
+      <Space w={5} />
+      <ActionIcon size="sm">
+        <GithubIcon />
+      </ActionIcon>
+    </div>
+  );
+}
+
+// function Header() {
+//   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
+//   return (
+//     <MantineHeader height={70} padding="md">
+//       <div
+//         style={{
+//           display: 'flex',
+//           height: '100%',
+//           alignItems: 'center',
+//           justifyContent: 'center',
+//           flexDirection: 'row'
+//         }}
+//       >
+//         <div style={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
+//           <Text style={{ fontWeight: 800, fontSize: '2rem' }} color="violet">
+//             Vo
+//             <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
+//               <span style={{ fontWeight: 200 }}>ting Po</span>
+//             </MediaQuery>
+//             ker
+//           </Text>
+//         </div>
+//         <div style={{ marginLeft: 'auto' }}>
+//           <ActionIcon onClick={() => toggleColorScheme()}>
+//             {colorScheme === 'dark' ? <SunIcon /> : <MoonIcon />}
+//           </ActionIcon>
+//         </div>
+//       </div>
+//     </MantineHeader>
+//   );
+// }
