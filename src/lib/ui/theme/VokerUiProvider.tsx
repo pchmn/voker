@@ -1,25 +1,18 @@
-import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
-import { useColorScheme } from '@mantine/hooks';
-import React, { PropsWithChildren, useState } from 'react';
+import { ThemeSettingsContext, useThemeSettings } from '@lib/ui';
+import { ColorSchemeProvider, MantineProvider, TypographyStylesProvider } from '@mantine/core';
+import React, { PropsWithChildren } from 'react';
 
 export function VokerUiProvider({ children }: PropsWithChildren<unknown>) {
-  const preferredColorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(preferredColorScheme);
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-
-  console.log('color scheme', colorScheme);
+  const { themeSettings, toggleColorScheme, setPrimaryColor } = useThemeSettings();
+  console.log('themeSettings', themeSettings);
 
   return (
-    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-      <MantineProvider
-        theme={{
-          primaryColor: 'violet',
-          colorScheme
-        }}
-      >
-        {children}
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <ThemeSettingsContext.Provider value={{ themeSettings, toggleColorScheme, setPrimaryColor }}>
+      <ColorSchemeProvider colorScheme={themeSettings?.colorScheme || 'dark'} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider theme={themeSettings}>
+          <TypographyStylesProvider>{children}</TypographyStylesProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </ThemeSettingsContext.Provider>
   );
 }
