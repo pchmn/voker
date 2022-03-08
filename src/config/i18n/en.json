@@ -1,4 +1,14 @@
 {
+  "ui": {
+    "themeEditor": {
+      "title": "Customize theme",
+      "background": "Background",
+      "color": "Color",
+      "dark": "Dark",
+      "light": "Light",
+      "validate": "Validate"
+    }
+  },
   "common": {
     "validate": "Validate",
     "loading": "Loading...",
@@ -9,11 +19,20 @@
     "unknownError": "An error occured, please retry or reload the page",
     "roomNotFound": "Can't join room, please check room ID"
   },
+  "header": {
+    "darkTheme": "Dark",
+    "lightTheme": "Light",
+    "settings": "Settings",
+    "customizeTheme": "Customize theme",
+    "editProfile": "Edit profile"
+  },
   "home": {
     "createNewRoom": "Create new Room",
     "joinARoom": "Join a Room",
     "joinRoom": "Join Room",
-    "roomId": "Room ID"
+    "roomId": "Room ID",
+    "title": "Voting Poker tool for agile teams",
+    "helper": "Get started by creating or joining a room"
   },
   "withUsername": {
     "titleCreation": "Please choose a username before creating the room",
