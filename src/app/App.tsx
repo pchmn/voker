@@ -1,18 +1,25 @@
 import { AppLayout } from '@app/components';
+import { Home } from '@app/features/Home';
 import { useFirebaseAuth } from '@lib/core';
 import React, { useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const { authenticate } = useFirebaseAuth();
+  const { authenticate, currentUser } = useFirebaseAuth();
 
   useEffect(() => {
-    (async function anyNameFunction() {
-      console.log(await authenticate());
-    })();
-  }, [authenticate]);
+    console.log('in');
+    // (async function anyNameFunction() {
+    //   await authenticate();
+    //   console.log(currentUser());
+    // })();
+  }, [authenticate, currentUser]);
 
-  return <AppLayout />;
+  return (
+    <AppLayout>
+      <Home />
+    </AppLayout>
+  );
 }
 
 export default App;
