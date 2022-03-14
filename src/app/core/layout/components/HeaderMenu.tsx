@@ -1,14 +1,14 @@
-import { ColorPaletteIcon, SettingsIcon, UserIcon } from '@app/components';
+import { ProfileEditor } from '@app/core/auth';
+import { ColorPaletteIcon, SettingsIcon, UserIcon } from '@app/shared/components';
 import { Icon, ThemeEditor } from '@lib/ui';
-import { ActionIcon, Menu } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
+import { ActionIcon, Menu, Modal } from '@mantine/core';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function HeaderMenu() {
   const { t } = useTranslation();
   const [themeEditorOpened, setThemeEditorOpened] = useState(false);
-
-  useEffect(() => console.log('in HeaderMenu'), []);
+  const [profileEditorOpened, setProfileEditorOpened] = useState(false);
 
   return (
     <>
@@ -27,6 +27,7 @@ export function HeaderMenu() {
               <UserIcon />
             </Icon>
           }
+          onClick={() => setProfileEditorOpened(true)}
         >
           {t('header.editProfile')}
         </Menu.Item>
@@ -42,6 +43,14 @@ export function HeaderMenu() {
         </Menu.Item>
       </Menu>
       <ThemeEditor opened={themeEditorOpened} onClose={() => setThemeEditorOpened(false)} />
+      <Modal
+        size="xs"
+        opened={profileEditorOpened}
+        onClose={() => setProfileEditorOpened(false)}
+        title={t('header.profileEditor.title')}
+      >
+        <ProfileEditor onClose={() => setProfileEditorOpened(false)} />
+      </Modal>
     </>
   );
 }

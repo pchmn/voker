@@ -1,15 +1,15 @@
 import { ColorPicker, Icon, useThemeSettings } from '@lib/ui';
-import { Box, Button, Center, Group, Modal, SegmentedControl, Space, Title } from '@mantine/core';
+import { Box, Button, Center, Group, Modal, ModalProps, SegmentedControl, Space, Title } from '@mantine/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export function ThemeEditor({ opened, onClose }: { opened: boolean; onClose: () => void }) {
+export function ThemeEditor({ opened, onClose }: Pick<ModalProps, 'opened' | 'onClose'>) {
   const { themeSettings, toggleColorScheme } = useThemeSettings();
   const { t } = useTranslation();
 
   return (
     <>
-      <Modal opened={opened} onClose={onClose} title={t('ui.themeEditor.title')}>
+      <Modal size="sm" opened={opened} onClose={onClose} title={t('ui.themeEditor.title')}>
         <Space h="md" />
         <Group position="center" direction="column">
           <Title order={6}>{t('ui.themeEditor.background')}</Title>
@@ -47,7 +47,9 @@ export function ThemeEditor({ opened, onClose }: { opened: boolean; onClose: () 
           <ColorPicker />
           <Space h="md" />
 
-          <Button onClick={() => onClose()}>{t('ui.themeEditor.validate')}</Button>
+          <Button style={{ marginBottom: '10px' }} onClick={() => onClose()}>
+            {t('ui.themeEditor.validate')}
+          </Button>
         </Group>
       </Modal>
     </>
