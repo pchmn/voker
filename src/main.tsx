@@ -3,6 +3,7 @@ import { VokerUiProvider } from '@lib/ui';
 import firebase from 'firebase/compat/app';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import './config/i18n/translation';
 import './index.css';
 
@@ -27,10 +28,14 @@ const firebaseConfigDev = {
 };
 firebase.initializeApp(import.meta.env.PROD ? firebaseConfigProd : firebaseConfigDev);
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <VokerUiProvider>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
     </VokerUiProvider>
   </React.StrictMode>,
   document.getElementById('root')
