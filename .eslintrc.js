@@ -30,7 +30,7 @@ module.exports = {
     'no-restricted-imports': [
       'error',
       {
-        patterns: ['@app/features/*/*', '@lib/*/*', '@app/components/*']
+        patterns: ['@app/features/*/*', '@lib/*/*', '@app/shared/*/*', '@app/core/*/*']
       }
     ]
   }

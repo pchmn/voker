@@ -24,7 +24,12 @@
     "lightTheme": "Light",
     "settings": "Settings",
     "customizeTheme": "Customize theme",
-    "editProfile": "Edit profile"
+    "editProfile": "Edit profile",
+    "profileEditor": {
+      "title": "Edit your profile",
+      "name": "Name",
+      "namePlaceholder": "Your name"
+    }
   },
   "home": {
     "createNewRoom": "Create new Room",

@@ -36,7 +36,6 @@ specifiers:
   ts-jest: ^27.0.7
   typescript: ^4.3.2
   vite: ^2.6.13
-  vite-plugin-svgr: ^1.0.1
   vite-tsconfig-paths: ^3.3.17
 
 dependencies:
@@ -77,7 +76,6 @@ devDependencies:
   ts-jest: 27.0.7_013ef332172517e974c4b270e59f55f5
   typescript: 4.5.2
   vite: 2.6.14
-  vite-plugin-svgr: 1.0.1_vite@2.6.14
   vite-tsconfig-paths: 3.3.17_vite@2.6.14
 
 packages:
@@ -1701,129 +1699,6 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@svgr/babel-plugin-add-jsx-attribute/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-vW0f8yoxuCtgHnNnKnicxB6E/hg=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-remove-jsx-attribute/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-WGVJCL7r+gaWgagzMlRLF+Ujfok=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-remove-jsx-empty-expression/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-0G3W6Kj2A/kvmXm7mZCh+FpPV7o=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-replace-jsx-attribute-value/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-C4WDdXewLDHAnHWKEpMoIPUkXO4=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-svg-dynamic-title/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-KCNuwm96udSGpIfTauUtWLoVZ28=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-svg-em-dimensions/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-QCZ8XeobQ8T4Og62Fp4ItD2Lr84=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-transform-react-native-svg/6.0.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-62iNCl9TnjTSaNilFugfXX/t58k=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-plugin-transform-svg-component/6.2.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-e6Ydn8H7QrC6GgTkYwAZ+n6ZPE8=}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-    dev: true
-
-  /@svgr/babel-preset/6.2.0_@babel+core@7.16.0:
-    resolution: {integrity: sha1-HTrYx2ZCU6S+jkoPDmhy8w2K9ic=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-    dependencies:
-      '@babel/core': 7.16.0
-      '@svgr/babel-plugin-add-jsx-attribute': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-remove-jsx-attribute': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-remove-jsx-empty-expression': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-replace-jsx-attribute-value': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-svg-dynamic-title': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-svg-em-dimensions': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-transform-react-native-svg': 6.0.0_@babel+core@7.16.0
-      '@svgr/babel-plugin-transform-svg-component': 6.2.0_@babel+core@7.16.0
-    dev: true
-
-  /@svgr/core/6.2.1:
-    resolution: {integrity: sha1-GV3oB6nyf54ODWeOAQhLBcVP32E=}
-    engines: {node: '>=10'}
-    dependencies:
-      '@svgr/plugin-jsx': 6.2.1_@svgr+core@6.2.1
-      camelcase: 6.2.1
-      cosmiconfig: 7.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@svgr/hast-util-to-babel-ast/6.2.1:
-    resolution: {integrity: sha1-rgZVZ7dMvnRa+uYXBTrfmnZL6iU=}
-    engines: {node: '>=10'}
-    dependencies:
-      '@babel/types': 7.16.0
-      entities: 3.0.1
-    dev: true
-
-  /@svgr/plugin-jsx/6.2.1_@svgr+core@6.2.1:
-    resolution: {integrity: sha1-Vmjx0qoYwvG7eh/J9oLT+a7SY70=}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@svgr/core': ^6.0.0
-    dependencies:
-      '@babel/core': 7.16.0
-      '@svgr/babel-preset': 6.2.0_@babel+core@7.16.0
-      '@svgr/core': 6.2.1
-      '@svgr/hast-util-to-babel-ast': 6.2.1
-      svg-parser: 2.0.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@testing-library/dom/8.11.1:
     resolution: {integrity: sha512-3KQDyx9r0RKYailW2MiYrSSKEfH0GTkI51UGEvJenvcoDoeRYs0PZpi2SXqtnMClQvCqdtTTpOfFETDTVADpAg==}
     engines: {node: '>=12'}
@@ -3019,11 +2894,6 @@ packages:
       ansi-colors: 4.1.1
     dev: true
 
-  /entities/3.0.1:
-    resolution: {integrity: sha1-K4h8piWF6W2zkDSC0zbBAGwwAdQ=}
-    engines: {node: '>=0.12'}
-    dev: true
-
   /error-ex/1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
     dependencies:
@@ -3066,7 +2936,7 @@ packages:
     dev: true
 
   /esbuild-android-arm64/0.13.14:
-    resolution: {integrity: sha1-yFCD7OJr49Z+bHIOCIloqYQJ4CM=}
+    resolution: {integrity: sha512-Q+Xhfp827r+ma8/DJgpMRUbDZfefsk13oePFEXEIJ4gxFbNv5+vyiYXYuKm43/+++EJXpnaYmEnu4hAKbAWYbA==}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
@@ -3074,7 +2944,7 @@ packages:
     optional: true
 
   /esbuild-darwin-64/0.13.14:
-    resolution: {integrity: sha1-jk4jethHzFSh06XK7ianRrnwuB8=}
+    resolution: {integrity: sha512-YmOhRns6QBNSjpVdTahi/yZ8dscx9ai7a6OY6z5ACgOuQuaQ2Qk2qgJ0/siZ6LgD0gJFMV8UINFV5oky5TFNQQ==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
@@ -3082,7 +2952,7 @@ packages:
     optional: true
 
   /esbuild-darwin-arm64/0.13.14:
-    resolution: {integrity: sha1-s7Xr1AsssG7g9vs0LdS9zKVK0nM=}
+    resolution: {integrity: sha512-Lp00VTli2jqZghSa68fx3fEFCPsO1hK59RMo1PRap5RUjhf55OmaZTZYnCDI0FVlCtt+gBwX5qwFt4lc6tI1xg==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
@@ -3090,7 +2960,7 @@ packages:
     optional: true
 
   /esbuild-freebsd-64/0.13.14:
-    resolution: {integrity: sha1-F17LL6gUFCjPcOotX0wnU0utU+A=}
+    resolution: {integrity: sha512-BKosI3jtvTfnmsCW37B1TyxMUjkRWKqopR0CE9AF2ratdpkxdR24Vpe3gLKNyWiZ7BE96/SO5/YfhbPUzY8wKw==}
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
@@ -3098,7 +2968,7 @@ packages:
     optional: true
 
   /esbuild-freebsd-arm64/0.13.14:
-    resolution: {integrity: sha1-p9ZOQdH6WB+Nt3deUgDxjmfXDE0=}
+    resolution: {integrity: sha512-yd2uh0yf+fWv5114+SYTl4/1oDWtr4nN5Op+PGxAkMqHfYfLjFKpcxwCo/QOS/0NWqPVE8O41IYZlFhbEN2B8Q==}
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
@@ -3106,7 +2976,7 @@ packages:
     optional: true
 
   /esbuild-linux-32/0.13.14:
-    resolution: {integrity: sha1-FL3U9rbP01xlyDWJRlG6M1whF9o=}
+    resolution: {integrity: sha512-a8rOnS1oWSfkkYWXoD2yXNV4BdbDKA7PNVQ1klqkY9SoSApL7io66w5H44mTLsfyw7G6Z2vLlaLI2nz9MMAowA==}
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
@@ -3114,7 +2984,7 @@ packages:
     optional: true
 
   /esbuild-linux-64/0.13.14:
-    resolution: {integrity: sha1-f9VoUbKYL90M2ER+6YWMLFcRcIo=}
+    resolution: {integrity: sha512-yPZSoMs9W2MC3Dw+6kflKt5FfQm6Dicex9dGIr1OlHRsn3Hm7yGMUTctlkW53KknnZdOdcdd5upxvbxqymczVQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
@@ -3122,7 +2992,7 @@ packages:
     optional: true
 
   /esbuild-linux-arm/0.13.14:
-    resolution: {integrity: sha1-u5aplnfmCLMf9h83VkMm046EbKI=}
+    resolution: {integrity: sha512-8chZE4pkKRvJ/M/iwsNQ1KqsRg2RyU5eT/x2flNt/f8F2TVrDreR7I0HEeCR50wLla3B1C3wTIOzQBmjuc6uWg==}
     cpu: [arm]
     os: [linux]
     requiresBuild: true
@@ -3130,7 +3000,7 @@ packages:
     optional: true
 
   /esbuild-linux-arm64/0.13.14:
-    resolution: {integrity: sha1-pVY01wZ5ulCa3q/Wjuu5/R7Fr2w=}
+    resolution: {integrity: sha512-Lvo391ln9PzC334e+jJ2S0Rt0cxP47eoH5gFyv/E8HhOnEJTvm7A+RRnMjjHnejELacTTfYgFGQYPjLsi/jObQ==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
@@ -3138,7 +3008,7 @@ packages:
     optional: true
 
   /esbuild-linux-mips64le/0.13.14:
-    resolution: {integrity: sha1-alU2Ko/R5ZPeouzEGHe+7YuBhLk=}
+    resolution: {integrity: sha512-MZhgxbmrWbpY3TOE029O6l5tokG9+Yoj2hW7vdit/d/VnmneqeGrSHADuDL6qXM8L5jaCiaivb4VhsyVCpdAbQ==}
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
@@ -3146,7 +3016,7 @@ packages:
     optional: true
 
   /esbuild-linux-ppc64le/0.13.14:
-    resolution: {integrity: sha1-ngBIWH7OCn8YSrFH8g0HcJgEXn8=}
+    resolution: {integrity: sha512-un7KMwS7fX1Un6BjfSZxTT8L5cV/8Uf4SAhM7WYy2XF8o8TI+uRxxD03svZnRNIPsN2J5cl6qV4n7Iwz+yhhVw==}
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
@@ -3154,7 +3024,7 @@ packages:
     optional: true
 
   /esbuild-netbsd-64/0.13.14:
-    resolution: {integrity: sha1-3KsWpLvPoW4uhTXa3F9k/ciRxjs=}
+    resolution: {integrity: sha512-5ekKx/YbOmmlTeNxBjh38Uh5TGn5C4uyqN17i67k18pS3J+U2hTVD7rCxcFcRS1AjNWumkVL3jWqYXadFwMS0Q==}
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
@@ -3162,7 +3032,7 @@ packages:
     optional: true
 
   /esbuild-openbsd-64/0.13.14:
-    resolution: {integrity: sha1-PHRTsVXrto3DTVrsO9ZQUze92gg=}
+    resolution: {integrity: sha512-9bzvwewHjct2Cv5XcVoE1yW5YTW12Sk838EYfA46abgnhxGoFSD1mFcaztp5HHC43AsF+hQxbSFG/RilONARUA==}
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
@@ -3170,7 +3040,7 @@ packages:
     optional: true
 
   /esbuild-sunos-64/0.13.14:
-    resolution: {integrity: sha1-ha3fX+9rXbFUqVXU8uiJUzWddc4=}
+    resolution: {integrity: sha512-mjMrZB76M6FmoiTvj/RGWilrioR7gVwtFBRVugr9qLarXMIU1W/pQx+ieEOtflrW61xo8w1fcxyHsVVGRvoQ0w==}
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
@@ -3178,7 +3048,7 @@ packages:
     optional: true
 
   /esbuild-windows-32/0.13.14:
-    resolution: {integrity: sha1-93+Y8wpcY2xE2yQo7N+by7rtsac=}
+    resolution: {integrity: sha512-GZa6mrx2rgfbH/5uHg0Rdw50TuOKbdoKCpEBitzmG5tsXBdce+cOL+iFO5joZc6fDVCLW3Y6tjxmSXRk/v20Hg==}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
@@ -3186,7 +3056,7 @@ packages:
     optional: true
 
   /esbuild-windows-64/0.13.14:
-    resolution: {integrity: sha1-vHeGdMQNZRUNEjheDyPrOgutvQ0=}
+    resolution: {integrity: sha512-Lsgqah24bT7ClHjLp/Pj3A9wxjhIAJyWQcrOV4jqXAFikmrp2CspA8IkJgw7HFjx6QrJuhpcKVbCAe/xw0i2yw==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
@@ -3194,7 +3064,7 @@ packages:
     optional: true
 
   /esbuild-windows-arm64/0.13.14:
-    resolution: {integrity: sha1-kaja01qyxN0nzYOGB0KVWyWjVNc=}
+    resolution: {integrity: sha512-KP8FHVlWGhM7nzYtURsGnskXb/cBCPTfj0gOKfjKq2tHtYnhDZywsUG57nk7TKhhK0fL11LcejHG3LRW9RF/9A==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
@@ -3677,7 +3547,7 @@ packages:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=}
 
   /fsevents/2.3.2:
-    resolution: {integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=}
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -6198,10 +6068,6 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /svg-parser/2.0.4:
-    resolution: {integrity: sha1-/cLinhOVFzYUC3bLEiyO5mMOtrU=}
-    dev: true
-
   /symbol-tree/3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
     dev: true
@@ -6526,17 +6392,6 @@ packages:
     dependencies:
       spdx-correct: 3.1.1
       spdx-expression-parse: 3.0.1
-    dev: true
-
-  /vite-plugin-svgr/1.0.1_vite@2.6.14:
-    resolution: {integrity: sha1-mbu+R0unncfwC9tQgxQBKs9vg7Q=}
-    peerDependencies:
-      vite: ^2.6.0
-    dependencies:
-      '@svgr/core': 6.2.1
-      vite: 2.6.14
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /vite-tsconfig-paths/3.3.17_vite@2.6.14:
