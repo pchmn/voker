@@ -7,21 +7,30 @@ import {
   User,
   UserCredential
 } from 'firebase/auth';
+import { useEffect, useRef } from 'react';
 
 export function useFirebaseAuth() {
+  const unsubscribe = useRef<Unsubscribe>();
+
+  useEffect(() => {
+    return () => unsubscribe.current?.();
+  }, []);
+
   const auth = getAuth();
 
   const authenticate: () => Promise<UserCredential> = () => signInAnonymously(auth);
 
-  const currentUser: () => User | null = () => auth.currentUser;
+  const getCurrentUser: () => User | null = () => auth.currentUser;
 
   const subscribeAuth: (callback: (user: User | null) => void) => Unsubscribe = (
     callback: (user: User | null) => void
   ) => {
-    return onAuthStateChanged(auth, (firebaseUser) => callback(firebaseUser));
+    const onAuth = onAuthStateChanged(auth, (firebaseUser) => callback(firebaseUser));
+    unsubscribe.current = onAuth;
+    return onAuth;
   };
 
   const signOut: () => Promise<void> = () => firebaseSignOut(auth);
 
-  return { authenticate, currentUser, subscribeAuth, signOut };
+  return { authenticate, getCurrentUser, subscribeAuth, signOut };
 }

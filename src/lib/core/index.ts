@@ -4,6 +4,8 @@ export * from './firebase/useFirebaseAuth';
 export * from './firebase/useFirebaseDocument';
 export * from './firestore/firestoreDocument.model';
 export * from './firestore/useFirestore';
+export * from './firestore/useFirestoreCollection';
+export * from './firestore/useFirestoreDocument';
 export * from './utils/convertObjectToDotNotation';
 export * from './utils/deepPartial.type';
 export * from './utils/dotNotation.type';

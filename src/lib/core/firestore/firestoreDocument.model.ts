@@ -1,3 +1,1 @@
-export interface FirestoreDocument {
-  id: string;
-}
+export type FirestoreDocument<T> = T & { id: string };

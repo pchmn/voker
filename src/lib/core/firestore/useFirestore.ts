@@ -55,15 +55,15 @@ interface ReadCollectionParams extends BaseParams {
   query?: QueryOptions;
 }
 
-export function useFirestore<T extends FirestoreDocument>() {
+export function useFirestore<T>() {
   const db = getFirestore();
 
-  const getDoc: (params: BaseParams) => Promise<T | undefined> = async ({ path }) =>
+  const getDoc: (params: BaseParams) => Promise<FirestoreDocument<T> | undefined> = async ({ path }) =>
     castSnapshotToFirestoreDocument<T>(await firestoreGetDoc(doc(db, path)));
 
   const subscribeDoc: (
     params: BaseParams,
-    onValue: (value: T | undefined) => void,
+    onValue: (value: FirestoreDocument<T> | undefined) => void,
     onError?: (error: FirestoreError) => void
   ) => Unsubscribe = ({ path }, onValue, onError) => {
     return onSnapshot(
@@ -92,7 +92,7 @@ export function useFirestore<T extends FirestoreDocument>() {
     return (await firestoreAddDoc(collection(db, path), value)).id;
   };
 
-  const getCollection: (params: ReadCollectionParams) => Promise<T[] | undefined> = async ({
+  const getCollection: (params: ReadCollectionParams) => Promise<FirestoreDocument<T>[] | undefined> = async ({
     path,
     query = { where: undefined, orderBy: undefined }
   }) => {
@@ -105,16 +105,16 @@ export function useFirestore<T extends FirestoreDocument>() {
       return undefined;
     }
 
-    const data: T[] = [];
+    const data: FirestoreDocument<T>[] = [];
     querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() } as T);
+      data.push({ id: doc.id, ...doc.data() } as FirestoreDocument<T>);
     });
     return data;
   };
 
   const subscribeCollection: (
     params: ReadCollectionParams,
-    onValue: (value: T[] | undefined) => void,
+    onValue: (value: FirestoreDocument<T>[] | undefined) => void,
     onError?: (error: FirestoreError) => void
   ) => Unsubscribe = ({ path, query = { where: undefined, orderBy: undefined } }, onValue, onError) => {
     const q = firestoreQuery(
@@ -128,9 +128,9 @@ export function useFirestore<T extends FirestoreDocument>() {
         if (querySnapshot.empty) {
           onValue(undefined);
         } else {
-          const data: T[] = [];
+          const data: FirestoreDocument<T>[] = [];
           querySnapshot.forEach((doc) => {
-            data.push({ id: doc.id, ...doc.data() } as T);
+            data.push({ id: doc.id, ...doc.data() } as FirestoreDocument<T>);
           });
           onValue(data);
         }
@@ -142,8 +142,8 @@ export function useFirestore<T extends FirestoreDocument>() {
   return { getDoc, subscribeDoc, setDoc, updateDoc, deleteDoc, addDoc, getCollection, subscribeCollection };
 }
 
-function castSnapshotToFirestoreDocument<T extends FirestoreDocument>(docSnap: DocumentSnapshot): T | undefined {
-  return docSnap.exists() ? ({ id: docSnap.id, ...docSnap.data() } as T) : undefined;
+function castSnapshotToFirestoreDocument<T>(docSnap: DocumentSnapshot): FirestoreDocument<T> | undefined {
+  return docSnap.exists() ? ({ id: docSnap.id, ...docSnap.data() } as FirestoreDocument<T>) : undefined;
 }
 
 function createWhereQuery(where?: Where | Where[]): QueryConstraint[] {
