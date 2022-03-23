@@ -1,13 +1,10 @@
-import { useFirebaseAuth, useFirestoreDocument } from '@lib/core';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useCurrentUser } from './useCurrentUser';
 
 export function useProfileEditor(onClose: () => void) {
   const { t } = useTranslation();
-  const { getCurrentUser } = useFirebaseAuth();
-  const { data, isLoading, set } = useFirestoreDocument<{ name: string }>(`users/${getCurrentUser()?.uid}`, {
-    listen: false
-  });
+  const { data, isLoading, setUsername } = useCurrentUser();
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -22,10 +19,10 @@ export function useProfileEditor(onClose: () => void) {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (inputValue && inputValue !== data?.name) {
-      await set({ name: inputValue });
+      await setUsername({ name: inputValue });
     }
     onClose();
   };
 
-  return { t, data, isLoading, set, inputValue, setInputValue, onSubmit, inputRef };
+  return { t, data, isLoading, inputValue, setInputValue, onSubmit, inputRef };
 }
