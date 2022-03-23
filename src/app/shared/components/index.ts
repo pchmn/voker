@@ -1,3 +1,4 @@
+export * from './DynamicLogo';
 export * from './icons/ColorPaletteIcon';
 export * from './icons/GithubIcon';
 export * from './icons/SettingsIcon';
