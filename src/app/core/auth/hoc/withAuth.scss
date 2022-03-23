@@ -1,0 +1,50 @@
+.withAuth {
+  .appName {
+    animation: translateName 1s ease-in-out forwards;
+    margin-top: 0;
+  }
+
+  .appLogo {
+    animation: scaleLogo 1s ease-in-out forwards, pulse 1s ease infinite;
+    animation-delay: 0ms, 1.2s;
+  }
+}
+
+@keyframes translateName {
+  0% {
+    transform: translateY(-200%);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(25%);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleLogo {
+  0% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.0);
+  }
+  40% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.0);
+  }
+}

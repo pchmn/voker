@@ -1,19 +1,10 @@
+import { withAuth } from '@app/core/auth';
 import { AppLayout } from '@app/core/layout';
 import { Home } from '@app/features/Home';
-import { useFirebaseAuth } from '@lib/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 
 function App() {
-  const { authenticate, getCurrentUser } = useFirebaseAuth();
-
-  useEffect(() => {
-    (async function anyNameFunction() {
-      await authenticate();
-      console.log('getCurrentUser', getCurrentUser());
-    })();
-  }, [authenticate, getCurrentUser]);
-
   return (
     <AppLayout>
       <Home />
@@ -21,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuth(App);
