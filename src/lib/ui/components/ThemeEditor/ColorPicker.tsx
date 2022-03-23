@@ -1,16 +1,15 @@
-import { Icon, useThemeSettings } from '@lib/ui';
-import { createStyles, Group, MantineColor, useMantineTheme } from '@mantine/core';
+import { Icon, useThemeColors, useThemeSettings } from '@lib/ui';
+import { createStyles, Group, MantineColor } from '@mantine/core';
 import React from 'react';
 
 export function ColorPicker() {
   const { setPrimaryColor } = useThemeSettings();
-  const theme = useMantineTheme();
-  const colors = Object.keys(theme.colors) as Array<MantineColor>;
+  const { colors, primaryColor } = useThemeColors();
 
   return (
     <Group position="center">
       {colors.map((color) => (
-        <ColorItem key={color} color={color} isSelected={theme.primaryColor === color} onClick={setPrimaryColor} />
+        <ColorItem key={color} color={color} isSelected={primaryColor === color} onClick={setPrimaryColor} />
       ))}
     </Group>
   );
