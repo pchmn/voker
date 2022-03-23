@@ -2,15 +2,15 @@ import { DeepPartial, FirestoreDocument, QueryOptions, useFirestore } from '@lib
 import { Unsubscribe } from 'firebase/firestore';
 import { useEffect, useRef } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
+import { Options } from '../models/options.model';
 
-interface Options {
-  listen?: boolean;
+interface CollectionOptions extends Options {
   query?: QueryOptions;
 }
 
-export function useFirestoreCollection<T extends FirestoreDocument>(
+export function useFirestoreCollection<T>(
   path: string,
-  { listen = true, query = { where: undefined, orderBy: undefined } }: Options
+  { listen = true, query = { where: undefined, orderBy: undefined } }: CollectionOptions
 ) {
   const { getCollection, subscribeCollection, addDoc, updateDoc, deleteDoc } = useFirestore<T>();
   const queryClient = useQueryClient();
@@ -20,18 +20,18 @@ export function useFirestoreCollection<T extends FirestoreDocument>(
     return () => unsubscribe.current?.();
   }, []);
 
-  const queryResult = useQuery<T[] | undefined, Error>(path, async () => {
+  const queryResult = useQuery<FirestoreDocument<T>[] | undefined, Error>(path, async () => {
     if (listen) {
       const resolved = false;
 
-      return new Promise<T[] | undefined>((resolve, reject) => {
+      return new Promise<FirestoreDocument<T>[] | undefined>((resolve, reject) => {
         unsubscribe.current = subscribeCollection(
           { path, query },
           (val) => {
             if (!resolved) {
               return resolve(val);
             }
-            queryClient.setQueryData<T[] | undefined>(path, val);
+            queryClient.setQueryData<FirestoreDocument<T>[] | undefined>(path, val);
           },
           reject
         );

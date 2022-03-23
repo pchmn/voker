@@ -2,10 +2,7 @@ import { DeepPartial, FirestoreDocument, UpdateOptions, useFirestore } from '@li
 import { Unsubscribe } from 'firebase/firestore';
 import { useEffect, useRef } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
-
-interface Options {
-  listen?: boolean;
-}
+import { Options } from '../models/options.model';
 
 export function useFirestoreDocument<T>(path: string, options: Options = { listen: true }) {
   const { getDoc, subscribeDoc, setDoc, updateDoc, deleteDoc } = useFirestore<T>();

@@ -22,6 +22,7 @@ import {
   where as firestoreWhere,
   WhereFilterOp
 } from 'firebase/firestore';
+import { useMemo } from 'react';
 
 export interface UpdateOptions {
   overwrite: boolean;
@@ -56,7 +57,7 @@ interface ReadCollectionParams extends BaseParams {
 }
 
 export function useFirestore<T>() {
-  const db = getFirestore();
+  const db = useMemo(() => getFirestore(), []);
 
   const getDoc: (params: BaseParams) => Promise<FirestoreDocument<T> | undefined> = async ({ path }) =>
     castSnapshotToFirestoreDocument<T>(await firestoreGetDoc(doc(db, path)));
