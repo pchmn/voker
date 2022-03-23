@@ -1,11 +1,9 @@
-import { GithubIcon } from '@app/shared/components';
-import { ActionIcon, AppShell, Header as MantineHeader, MediaQuery, Space, Text, useMantineTheme } from '@mantine/core';
+import { DynamicLogo, GithubIcon } from '@app/shared/components';
+import { ActionIcon, AppShell, Header as MantineHeader, Space, Text, useMantineTheme } from '@mantine/core';
 import React, { PropsWithChildren } from 'react';
 import { HeaderMenu } from './HeaderMenu';
 
 export function AppLayout({ children }: PropsWithChildren<unknown>) {
-  const theme = useMantineTheme();
-
   return (
     <AppShell
       fixed
@@ -20,14 +18,15 @@ export function AppLayout({ children }: PropsWithChildren<unknown>) {
               flexDirection: 'row'
             }}
           >
-            <div style={{ display: 'flex', flex: 1, justifyContent: 'center' }}>
-              <Text style={{ fontWeight: 800, fontSize: '2rem' }} color={theme.primaryColor}>
+            <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <DynamicLogo />
+              {/* <Text style={{ fontWeight: 800, fontSize: '2rem' }} color={theme.primaryColor}>
                 Vo
                 <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
                   <span style={{ fontWeight: 200 }}>ting Po</span>
                 </MediaQuery>
                 ker
-              </Text>
+              </Text> */}
             </div>
             <div style={{ marginLeft: 'auto' }}>
               <HeaderMenu />

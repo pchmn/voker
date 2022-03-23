@@ -15,7 +15,7 @@ export function DynamicLogo({
   onAnimationEnd
 }: {
   size?: MantineNumberSize;
-  className: string;
+  className?: string;
   onAnimationEnd?: React.AnimationEventHandler<SVGElement>;
 }) {
   const theme = useMantineTheme();
