@@ -1,14 +1,20 @@
 import { ProfileEditor } from '@app/core/auth';
 import { ColorPaletteIcon, SettingsIcon, UserIcon } from '@app/shared/components';
-import { Icon, ThemeEditor } from '@lib/ui';
-import { ActionIcon, Menu, Modal } from '@mantine/core';
-import React, { useState } from 'react';
+import { Icon, ThemeEditor, useModal } from '@lib/ui';
+import { ActionIcon, Menu } from '@mantine/core';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function HeaderMenu() {
   const { t } = useTranslation();
-  const [themeEditorOpened, setThemeEditorOpened] = useState(false);
-  const [profileEditorOpened, setProfileEditorOpened] = useState(false);
+  const { Modal: ProfileEditorModal, toggle: toggleProfileEditorModal } = useModal(ProfileEditor, undefined, {
+    title: t('header.profileEditor.title'),
+    size: 'xs'
+  });
+  const { Modal: ThemeEditorModal, toggle: toggleThemeEditorModal } = useModal(ThemeEditor, undefined, {
+    title: t('ui.themeEditor.title'),
+    size: 'sm'
+  });
 
   return (
     <>
@@ -27,7 +33,7 @@ export function HeaderMenu() {
               <UserIcon />
             </Icon>
           }
-          onClick={() => setProfileEditorOpened(true)}
+          onClick={toggleProfileEditorModal}
         >
           {t('header.editProfile')}
         </Menu.Item>
@@ -37,20 +43,13 @@ export function HeaderMenu() {
               <ColorPaletteIcon />
             </Icon>
           }
-          onClick={() => setThemeEditorOpened(true)}
+          onClick={toggleThemeEditorModal}
         >
           {t('header.customizeTheme')}
         </Menu.Item>
       </Menu>
-      <ThemeEditor opened={themeEditorOpened} onClose={() => setThemeEditorOpened(false)} />
-      <Modal
-        size="xs"
-        opened={profileEditorOpened}
-        onClose={() => setProfileEditorOpened(false)}
-        title={t('header.profileEditor.title')}
-      >
-        <ProfileEditor onClose={() => setProfileEditorOpened(false)} />
-      </Modal>
+      <ThemeEditorModal />
+      <ProfileEditorModal />
     </>
   );
 }

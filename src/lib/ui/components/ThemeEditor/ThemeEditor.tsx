@@ -1,57 +1,55 @@
 import { ColorPicker, Icon, useThemeSettings } from '@lib/ui';
-import { Box, Button, Center, Group, Modal, ModalProps, SegmentedControl, Space, Title } from '@mantine/core';
+import { Box, Button, Center, Group, ModalProps, SegmentedControl, Space, Title } from '@mantine/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export function ThemeEditor({ opened, onClose }: Pick<ModalProps, 'opened' | 'onClose'>) {
+export function ThemeEditor({ onClose }: Pick<ModalProps, 'opened' | 'onClose'>) {
   const { themeSettings, toggleColorScheme } = useThemeSettings();
   const { t } = useTranslation();
 
   return (
     <>
-      <Modal size="sm" opened={opened} onClose={onClose} title={t('ui.themeEditor.title')}>
+      <Space h="md" />
+      <Group position="center" direction="column">
+        <Title order={6}>{t('ui.themeEditor.background')}</Title>
+        <SegmentedControl
+          value={themeSettings?.colorScheme}
+          onChange={() => toggleColorScheme()}
+          data={[
+            {
+              value: 'dark',
+              label: (
+                <Center>
+                  <Icon size="xs">
+                    <MoonIcon />
+                  </Icon>
+                  <Box ml={10}>{t('ui.themeEditor.dark')}</Box>
+                </Center>
+              )
+            },
+            {
+              value: 'light',
+              label: (
+                <Center>
+                  <Icon size="xs">
+                    <SunIcon />
+                  </Icon>
+                  <Box ml={10}>{t('ui.themeEditor.light')}</Box>
+                </Center>
+              )
+            }
+          ]}
+        />
+        <Space h="xs" />
+
+        <Title order={6}>{t('ui.themeEditor.color')}</Title>
+        <ColorPicker />
         <Space h="md" />
-        <Group position="center" direction="column">
-          <Title order={6}>{t('ui.themeEditor.background')}</Title>
-          <SegmentedControl
-            value={themeSettings?.colorScheme}
-            onChange={() => toggleColorScheme()}
-            data={[
-              {
-                value: 'dark',
-                label: (
-                  <Center>
-                    <Icon size="xs">
-                      <MoonIcon />
-                    </Icon>
-                    <Box ml={10}>{t('ui.themeEditor.dark')}</Box>
-                  </Center>
-                )
-              },
-              {
-                value: 'light',
-                label: (
-                  <Center>
-                    <Icon size="xs">
-                      <SunIcon />
-                    </Icon>
-                    <Box ml={10}>{t('ui.themeEditor.light')}</Box>
-                  </Center>
-                )
-              }
-            ]}
-          />
-          <Space h="xs" />
 
-          <Title order={6}>{t('ui.themeEditor.color')}</Title>
-          <ColorPicker />
-          <Space h="md" />
-
-          <Button style={{ marginBottom: '10px' }} onClick={() => onClose()}>
-            {t('ui.themeEditor.validate')}
-          </Button>
-        </Group>
-      </Modal>
+        <Button style={{ marginBottom: '10px' }} onClick={() => onClose()}>
+          {t('ui.themeEditor.validate')}
+        </Button>
+      </Group>
     </>
   );
 }
