@@ -7,4 +7,3 @@ export * from './firebase/models/options.model';
 export * from './utils/convertObjectToDotNotation';
 export * from './utils/deepPartial.type';
 export * from './utils/dotNotation.type';
-export * from './utils/shadeColor';

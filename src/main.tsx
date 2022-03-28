@@ -1,6 +1,8 @@
 import App from '@app/App';
 import { VokerUiProvider } from '@lib/ui';
+import { useMantineTheme } from '@mantine/core';
 import firebase from 'firebase/compat/app';
+import { setup } from 'goober';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -29,6 +31,8 @@ const firebaseConfigDev = {
 firebase.initializeApp(import.meta.env.PROD ? firebaseConfigProd : firebaseConfigDev);
 
 const queryClient = new QueryClient();
+
+setup(React.createElement, undefined, useMantineTheme);
 
 ReactDOM.render(
   <React.StrictMode>
