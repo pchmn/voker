@@ -1,8 +1,8 @@
 import { withAuth } from '@app/core/auth';
 import { AppLayout } from '@app/core/layout';
 import { Home } from '@app/modules/Home';
+import { AnimatedRoute } from '@lib/ui';
 import { ReactLocation, Router } from '@tanstack/react-location';
-import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import './App.css';
 
@@ -14,15 +14,14 @@ function App() {
       <Router
         basepath="/voker"
         location={location}
+        key={location.current.pathname}
         routes={[
           {
             path: '/',
             element: (
-              <AnimatePresence>
-                <motion.div key="modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                  <Home />
-                </motion.div>
-              </AnimatePresence>
+              <AnimatedRoute>
+                <Home />
+              </AnimatedRoute>
             )
           }
         ]}
