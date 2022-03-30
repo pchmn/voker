@@ -1,6 +1,5 @@
-// eslint-disable-next-line no-restricted-imports
-import { HTML5Store, StorageChangeEvent, StorageType } from '@lib/ui/hooks/storage';
 import { useEffect, useMemo, useState } from 'react';
+import { HTML5Store, StorageChangeEvent, StorageType } from '..';
 
 interface Options<T> {
   key: string;

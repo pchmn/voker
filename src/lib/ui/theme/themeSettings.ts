@@ -1,4 +1,4 @@
-import { useStorage } from '@lib/ui';
+import { useStorage } from '@lib/core';
 import { ColorScheme, MantineColor, MantineThemeOverride } from '@mantine/core';
 import { useColorScheme } from '@mantine/hooks';
 import { createContext } from 'react';
