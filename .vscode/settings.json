@@ -3,6 +3,7 @@
     "source.fixAll.eslint": true,
     "source.organizeImports": true
   },
+  "files.trimFinalNewlines": true,
   "editor.formatOnSave": false,
   "typescript.preferences.importModuleSpecifier": "shortest",
   "jest.autoRun": "off",
