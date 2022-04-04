@@ -29,7 +29,7 @@ export function AnimatedRoute({ children }: PropsWithChildren<unknown>) {
   const router = useRouter();
   return (
     <AnimatePresence exitBeforeEnter>
-      <motion.div key={router.state.location.key} {...variants}>
+      <motion.div key={router.state.location.key} {...variants} style={{ height: '100%' }}>
         {children}
       </motion.div>
     </AnimatePresence>
