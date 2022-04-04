@@ -18,7 +18,10 @@ export function useThemeSettings() {
     key: 'mantineThemeSettings',
     defaultValue: {
       primaryColor: 'violet',
-      colorScheme: preferredColorScheme
+      colorScheme: preferredColorScheme,
+      radius: {
+        sm: 8
+      }
     }
   });
 
