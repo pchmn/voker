@@ -1,3 +1,4 @@
+export * from './components';
 export * from './components/AnimatedRoute/AnimatedRoute';
 export * from './components/Icon/Icon';
 export * from './components/ThemeEditor/ColorPicker';
@@ -6,3 +7,4 @@ export * from './hooks/useModal';
 export * from './hooks/useThemeColors';
 export * from './theme/themeSettings';
 export * from './theme/VokerUiProvider';
+export * from './utils';
