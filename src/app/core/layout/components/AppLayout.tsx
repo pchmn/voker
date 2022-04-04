@@ -1,37 +1,24 @@
-import { DynamicLogo, GithubIcon } from '@app/shared/components';
+import { AppLogo, GithubIcon } from '@app/shared/components';
+import { FlexLayout } from '@lib/ui';
 import { ActionIcon, AppShell, Header as MantineHeader, Space, Text, useMantineTheme } from '@mantine/core';
+import { useNavigate } from '@tanstack/react-location';
 import React, { PropsWithChildren } from 'react';
 import { HeaderMenu } from './HeaderMenu';
 
 export function AppLayout({ children }: PropsWithChildren<unknown>) {
+  const navigate = useNavigate();
+
+  const goToHome = () => navigate({ to: '' });
+
   return (
     <AppShell
       fixed
       header={
         <MantineHeader height={70} padding="md">
-          <div
-            style={{
-              display: 'flex',
-              height: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'row'
-            }}
-          >
-            <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <DynamicLogo />
-              {/* <Text style={{ fontWeight: 800, fontSize: '2rem' }} color={theme.primaryColor}>
-                Vo
-                <MediaQuery smallerThan="xs" styles={{ display: 'none' }}>
-                  <span style={{ fontWeight: 200 }}>ting Po</span>
-                </MediaQuery>
-                ker
-              </Text> */}
-            </div>
-            <div style={{ marginLeft: 'auto' }}>
-              <HeaderMenu />
-            </div>
-          </div>
+          <FlexLayout direction="row" justifyContent="space-between" fullHeight alignItems="center">
+            <AppLogo direction="row" size="sm" onClick={goToHome} />
+            <HeaderMenu />
+          </FlexLayout>
         </MantineHeader>
       }
       styles={(theme) => ({

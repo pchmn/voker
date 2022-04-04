@@ -1,66 +1,13 @@
-import { DynamicLogo } from '@app/shared/components';
+import { AppLogo } from '@app/shared/components';
 import { useFirebaseAuth } from '@lib/core';
-import { Title } from '@mantine/core';
+import { FlexLayout } from '@lib/ui';
 import { AnimatePresence, motion } from 'framer-motion';
-import { keyframes, styled } from 'goober';
+import { styled } from 'goober';
 import React, { useEffect, useState } from 'react';
 
-const scale = keyframes({
-  '0%': {
-    transform: 'scale(0)'
-  },
-  '40% ': {
-    transform: 'scale(1.2)'
-  },
-  '50%': {
-    transform: 'scale(1.0)'
-  }
-});
-
-const pulse = keyframes({
-  '0%': {
-    transform: 'scale(1.0)'
-  },
-  '40% ': {
-    transform: 'scale(1.1)'
-  },
-  '50%': {
-    transform: 'scale(1.0)'
-  }
-});
-
-const translate = keyframes({
-  '0%': {
-    transform: 'translateY(-200%)',
-    opacity: 0
-  },
-  '40% ': {
-    transform: 'translateY(25%)',
-    opacity: 1
-  },
-  '50%': {
-    transform: 'translateY(0)',
-    opacity: 1
-  }
-});
-
-const Container = styled('div')(({ theme }) => ({
+const Container = styled(FlexLayout)(({ theme }) => ({
   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
   height: '100vh'
-}));
-
-const AppLogo = styled(DynamicLogo)(() => ({
-  animation: `${scale} 1s ease-in-out forwards, ${pulse} 1s ease infinite`,
-  animationDelay: '0ms, 1.2s'
-}));
-
-const AppName = styled(Title)(() => ({
-  animation: `${translate} 1s ease-in-out forwards`,
-  marginTop: '0 !important'
 }));
 
 export function withAuth(Component: React.ElementType) {
@@ -77,19 +24,16 @@ export function withAuth(Component: React.ElementType) {
 
     if (loading || !animationEnded) {
       return (
-        <Container>
-          <AppLogo size="xl" />
-          <AppName order={1} onAnimationEnd={() => setAnimationEnded(true)}>
-            Voker
-          </AppName>
+        <Container alignItems="center" justifyContent="center">
+          <AppLogo size="xl" onAnimationEnd={() => setAnimationEnded(true)} animate />
         </Container>
       );
     }
 
     return (
-      <Container>
+      <Container alignItems="center" justifyContent="center">
         <AnimatePresence>
-          <motion.div key="modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+          <motion.div key="app" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <Component />
           </motion.div>
         </AnimatePresence>
