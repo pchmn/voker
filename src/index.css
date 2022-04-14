@@ -1,8 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap');
+
 html, body, #root {
   margin: 0;
   /* height: 100%; */
 }
-
-/* #root {
-  display: flex;
-} */
