@@ -40,9 +40,9 @@
     "helper": "Get started by creating or joining a room"
   },
   "withUsername": {
-    "titleCreation": "Please choose a username before creating the room",
-    "titleJoining": "Please choose a username before joining the room",
-    "chooseUsername": "Your username"
+    "titleCreation": "Please choose a name before creating the room",
+    "titleJoin": "Please choose a name before joining the room",
+    "chooseUsername": "Your name"
   },
   "withJoiningRoom": {
     "loading": "Joining room..."
