@@ -1,26 +1,35 @@
-import { Button, ModalProps, Space, TextInput } from '@mantine/core';
+import { Button, Group, TextInput } from '@mantine/core';
 import React from 'react';
 import { useProfileEditor } from '../hooks/useProfileEditor';
 
-export function ProfileEditor({ onClose }: Pick<ModalProps, 'onClose'>) {
+interface ProfileEditorProps {
+  onClose?: () => void;
+  showLabel?: boolean;
+  direction?: 'row' | 'column';
+}
+
+export function ProfileEditor({ onClose, showLabel = true, direction = 'column' }: ProfileEditorProps) {
   const { inputRef, inputValue, setInputValue, onSubmit, t, isLoading } = useProfileEditor(onClose);
 
   return (
     <form onSubmit={onSubmit}>
-      <TextInput
-        ref={inputRef}
-        label={t('header.profileEditor.name')}
-        placeholder={t('header.profileEditor.namePlaceholder')}
-        required
-        value={inputValue}
-        onChange={(event) => setInputValue(event.currentTarget.value)}
-        disabled={isLoading}
-      />
+      <Group direction={direction} grow={direction === 'column'}>
+        <TextInput
+          ref={inputRef}
+          label={showLabel && t('header.profileEditor.name')}
+          placeholder={t('header.profileEditor.namePlaceholder')}
+          required
+          value={inputValue}
+          onChange={(event) => setInputValue(event.currentTarget.value)}
+          disabled={isLoading}
+          style={{ flex: 1 }}
+          variant="default"
+        />
 
-      <Space h="lg" />
-      <Button type="submit" fullWidth disabled={isLoading || !inputValue}>
-        {t('common.validate')}
-      </Button>
+        <Button type="submit" disabled={isLoading || !inputValue}>
+          {t('common.validate')}
+        </Button>
+      </Group>
     </form>
   );
 }
