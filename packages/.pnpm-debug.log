@@ -1,0 +1,22 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/paul/Dev/perso/voker"
+  },
+  "1 error pnpm": {
+    "code": "ELIFECYCLE",
+    "errno": "ENOENT",
+    "syscall": "spawn",
+    "file": "sh",
+    "pkgid": "@voker/monorepo@0.0.0",
+    "stage": "dev:web",
+    "script": "cd:web run dev",
+    "pkgname": "@voker/monorepo",
+    "err": {
+      "name": "pnpm",
+      "message": "@voker/monorepo@0.0.0 dev:web: `cd:web run dev`\nspawn ENOENT",
+      "code": "ELIFECYCLE",
+      "stack": "pnpm: @voker/monorepo@0.0.0 dev:web: `cd:web run dev`\nspawn ENOENT\n    at ChildProcess.<anonymous> (/Users/paul/.nvm/versions/node/v16.13.0/lib/node_modules/pnpm/dist/pnpm.cjs:92278:22)\n    at ChildProcess.emit (node:events:390:28)\n    at maybeClose (node:internal/child_process:1064:16)\n    at Process.ChildProcess._handle.onexit (node:internal/child_process:301:5)"
+    }
+  }
+}

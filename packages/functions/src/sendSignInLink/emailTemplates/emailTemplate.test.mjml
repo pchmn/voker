@@ -1,0 +1,55 @@
+<mjml>
+  <mj-head>
+    <mj-font name="Readex Pro" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600&display=swap" />
+    <mj-attributes>
+      <mj-all
+        font-family="'Readex Pro', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif"
+      ></mj-all>
+      <mj-text font-weight="400" font-size="16px" color="#C1C2C5" line-height="24px"></mj-text>
+      <mj-button
+        background-color="#6741D9"
+        border-radius="8px"
+        width="100%"
+        line-height="20px"
+        font-size="16px"
+        css-class="btn-block"
+      ></mj-button>
+    </mj-attributes>
+    <mj-style inline="inline"> .body { padding-bottom: 80px; } </mj-style>
+    <mj-style inline="inline">
+      .content-section { -webkit-box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); -moz-box-shadow: 1px 4px 11px 0px
+      rgba(0, 0, 0, 0.15); box-shadow: 1px 4px 11px 0px rgba(0, 0, 0, 0.15); }
+    </mj-style>
+    <mj-style inline="inline"> .footer-link { color: #888888 } </mj-style>
+    <mj-style> .btn-block a { display: block !important; } </mj-style>
+  </mj-head>
+  <mj-body background-color="#141517" css-class="body">
+    <mj-section>
+      <mj-column>
+        <mj-image width="115px" src="https://ik.imagekit.io/voker/logo-voker-dark_DNoKAw2bh.png"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#1A1C1E" css-class="content-section" border-radius="8px" padding="30px">
+      <mj-column width="100%">
+        <mj-text padding-top="0"><h1>Sign in to Voker</h1></mj-text>
+        <mj-text
+          ><p>
+            You requested a magic link to automatically sign in to Voker. Confirm it by clicking the button below.
+          </p></mj-text
+        >
+        <mj-button href="https://google.com"> Sign in </mj-button>
+        <mj-text font-size="12px"
+          ><p>
+            You will be signed in as <span style="font-weight: 600; color:#C1C2C5">pchmn.dev@gmail.com</span> by confirming this
+            request.<br />If you didn’t ask for a magic link, just ignore this email.
+          </p></mj-text
+        >
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column
+        ><mj-text font-size="12px" color="#909296" align="center">Voker • <a href="https://voker.app" style="color: #909296">voker.app</a></mj-text></mj-column
+      >
+    </mj-section>
+  </mj-body>
+</mjml>

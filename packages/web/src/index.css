@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Readex+Pro:wght@300;400;600&display=swap');
+
+html, body, #root {
+  margin: 0;
+  font-family: "Readex Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}

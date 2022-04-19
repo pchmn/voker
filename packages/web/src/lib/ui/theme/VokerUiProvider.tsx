@@ -7,7 +7,18 @@ export function VokerUiProvider({ children }: PropsWithChildren<unknown>) {
 
   return (
     <ThemeSettingsContext.Provider value={{ themeSettings, toggleColorScheme, setPrimaryColor }}>
-      <MantineProvider theme={themeSettings}>
+      <MantineProvider
+        theme={{
+          ...themeSettings,
+          fontFamily: '"Readex Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif',
+          headings: {
+            fontFamily: '"Readex Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif'
+          },
+          radius: {
+            sm: 8
+          }
+        }}
+      >
         <TypographyStylesProvider>{children}</TypographyStylesProvider>
       </MantineProvider>
     </ThemeSettingsContext.Provider>

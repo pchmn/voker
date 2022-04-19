@@ -1,11 +1,12 @@
 import App from '@app/App';
 import { VokerUiProvider } from '@lib/ui';
 import { useMantineTheme } from '@mantine/core';
-import firebase from 'firebase/compat/app';
+import { initializeApp } from 'firebase/app';
 import { setup } from 'goober';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import './config/i18n/translation';
 import './index.css';
 
@@ -28,7 +29,7 @@ const firebaseConfigDev = {
   messagingSenderId: '483044840910',
   appId: '1:483044840910:web:8e2c4ff5e8718e5c7ac79f'
 };
-firebase.initializeApp(import.meta.env.PROD ? firebaseConfigProd : firebaseConfigDev);
+initializeApp(import.meta.env.PROD ? firebaseConfigProd : firebaseConfigDev);
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ ReactDOM.render(
     <VokerUiProvider>
       <QueryClientProvider client={queryClient}>
         <App />
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </VokerUiProvider>
   </React.StrictMode>,

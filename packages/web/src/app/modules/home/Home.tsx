@@ -1,9 +1,13 @@
 import { Button, Center, Text, Title } from '@mantine/core';
+import { useNavigate } from '@tanstack/react-location';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function Home() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const goTo = (to: string) => navigate({ to });
 
   return (
     <Center style={{ marginTop: '50px' }}>
@@ -14,7 +18,7 @@ export function Home() {
         <Text>{t('home.helper')}</Text>
 
         <div style={{ marginTop: '20px' }}>
-          <Button size="md" style={{ marginRight: '20px' }}>
+          <Button size="md" style={{ marginRight: '20px' }} onClick={() => goTo('room/create')}>
             {t('home.createNewRoom')}
           </Button>
           <Button variant="outline" size="md">

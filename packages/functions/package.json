@@ -1,0 +1,27 @@
+{
+  "name": "functions",
+  "scripts": {
+    "build": "tsc && pnpm run mjml",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "mjml": "mkdir -p dist/sendSignInLink/emailTemplates && mjml src/sendSignInLink/emailTemplates/emailTemplate.mjml -o dist/sendSignInLink/emailTemplates/emailTemplate.html",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.2",
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "mjml": "^4.12.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0",
+    "typescript": "^4.5.4"
+  },
+  "private": true
+}

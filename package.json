@@ -1,57 +1,30 @@
 {
-  "name": "voker",
+  "name": "@voker/monorepo",
   "version": "0.0.0",
-  "description": "React + TypeScript + Vite + Github Actions starter template",
+  "private": true,
+  "description": "Voting poker tool",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pchmn/voker.git"
   },
-  "keywords": [
-    "react",
-    "vite",
-    "typescript",
-    "template",
-    "ghactions"
-  ],
   "author": "pchmn",
   "license": "MIT",
   "homepage": "https://github.com/pchmn/voker",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev:web": "pnpm --filter @voker/web run dev",
+    "build:web": "pnpm --filter @voker/web run build",
+    "serve:web": "pnpm --filter @voker/web run serve",
+    "test:web": "pnpm --filter @voker/web run test",
     "build:ci": "tsc && vite build && cp 404.html dist/",
-    "test": "jest",
     "test:ci": "jest --coverage",
-    "serve": "vite preview",
     "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks",
-    "lint": "eslint --cache --fix ./src"
-  },
-  "dependencies": {
-    "@mantine/core": "^3.6.5",
-    "@mantine/hooks": "^3.6.5",
-    "@tanstack/react-location": "^3.7.4",
-    "firebase": "^9.6.6",
-    "framer-motion": "^6.2.8",
-    "goober": "^2.1.8",
-    "i18next": "^21.6.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-i18next": "^11.15.3",
-    "react-query": "^3.34.13"
+    "lint": "eslint --cache --fix ."
   },
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
     "@commitlint/prompt-cli": "^13.2.1",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.1.2",
-    "@types/jest": "^27.0.2",
     "@types/node": "^16.11.0",
-    "@types/react": "^17.0.0",
-    "@types/react-dom": "^17.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "@vitejs/plugin-react": "^1.0.4",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^25.2.1",
@@ -60,13 +33,8 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-testing-library": "^4.12.4",
     "husky": "^7.0.2",
-    "jest": "^27.2.5",
-    "jest-transform-stub": "^2.0.0",
     "lint-staged": "^11.2.3",
     "prettier": "2.4.1",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.3.2",
-    "vite": "^2.6.13",
-    "vite-tsconfig-paths": "^3.3.17"
+    "typescript": "^4.5.4"
   }
 }
